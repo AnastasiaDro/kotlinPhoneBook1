@@ -61,13 +61,10 @@ fun main(args: Array<String>) {
 
         inputS = scan.next()
 
-        try {
-            when (inputS) {
-                "SEARCH" -> phoneBook.showContacts()
-                "ADD" -> phoneBook.addContact(phoneBook.generateContact())
-            }
+        when (inputS) {
+            "SEARCH" -> phoneBook.searchContact(scan)
+            "ADD" -> phoneBook.generateContact(scan)
         }
-        catch (e : Exception) {println("oooops")}
     }
     scan.close()
 

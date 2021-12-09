@@ -17,31 +17,62 @@ class PhoneBook()  {
         while (j < i && contArr[j] != null){
             contact = contArr[j]!!
             println("$j ${contact.getName()} ${contact.getSecName()} ${contact.getNickName()}")
+            j++
         }
     }
 
 
+    fun searchContact(scan : Scanner) {
+        val id : Int
+        showContacts()
+        print("Select a nessesary id, please: ")
+        try {
+            id = scan.nextInt()
+            if (id < 0 || id >= contArr.size)
+                throw Exception("ooops!")
+        } catch (e : Exception)
+        {
+            println("Ooops! invalid index! search again!")
+            return
+        }
+        printContactData(id)
+    }
 
-    fun generateContact(): Contact {
-        val name: String
-        val secName: String
-        val nickName: String
-        val phone: Int
-        val secret: String
 
-        val scan = Scanner(System.`in`)
+    fun generateContact(scan : Scanner) {
         print("Enter the first name: ")
-        name = scan.next()
+        val name = scan.next()
         print("Enter the second name: ")
-        secName = scan.next()
+        val secName = scan.next()
         print("Enter the nickname: ")
-        nickName = scan.next()
+        val nickName = scan.next()
         print("Enter the phone number: ")
-        phone = scan.nextInt()
+        val phone : Int
+        try {
+            phone = scan.nextInt()
+        } catch (e : Exception) {
+            println("Ooooops! invalid phoneNumber!")
+            println("Contact creation was stopped!")
+            return
+        }
         print("shhhhhh ... Enter the ... darkest secret! ")
-        secret = scan.next()
-        scan.close()
-        return Contact(name, secName, nickName, phone, secret)
+        val secret = scan.next()
+        println("A new contact was created!")
+        addContact(Contact(name, secName, nickName, phone, secret))
+    }
 
+    fun printContactData(id : Int) {
+        val curCont = contArr[id]
+        if (curCont != null) {
+            println("""name = ${curCont.getName()} 
+               |second name = ${curCont.getSecName()}
+               |nick name = ${curCont.getNickName()}
+               |phone number = ${curCont.getpNum()}
+               |shhhhhh!
+               |darkest secret is = ${curCont.getDSecret()}
+            """.trimMargin())
+        } else {
+            println("Invalid index! Try again!")
+        }
     }
 }
