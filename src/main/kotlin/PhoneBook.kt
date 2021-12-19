@@ -16,7 +16,7 @@ class PhoneBook()  {
         var contact : Contact
         while (j < i && contArr[j] != null){
             contact = contArr[j]!!
-            println("$j ${contact.getName()} ${contact.getSecName()} ${contact.getNickName()}")
+            println("$j ${contact.fName} ${contact.secName} ${contact.nickName}")
             j++
         }
     }
@@ -64,12 +64,12 @@ class PhoneBook()  {
     fun printContactData(id : Int) {
         val curCont = contArr[id]
         if (curCont != null) {
-            println("""name = ${curCont.getName()} 
-               |second name = ${curCont.getSecName()}
-               |nick name = ${curCont.getNickName()}
-               |phone number = ${curCont.getpNum()}
+            println("""name = ${curCont.fName} 
+               |second name = ${curCont.secName}
+               |nick name = ${curCont.nickName}
+               |phone number = ${curCont.pNum}
                |shhhhhh!
-               |darkest secret is = ${curCont.getDSecret()}
+               |darkest secret is = ${curCont.dSecret}
             """.trimMargin())
         } else {
             println("Invalid index! Try again!")
